@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+
+
+        //父类型
+        function Supper() {
+            this.supProp = 'super property';
+        };
+        Supper.prototype.showSupperProp = function() {
+            console.log(this.supProp);
+        };
+
+        //子类型
+        function Sub() {
+            this.subProp = 'sub property';
+        }; 
+
+        Sub.prototype = new Supper();//构造函数显式原型继承父函数的实例
+        var sub = new Sub();
+        sub.showSupperProp();
+
+        //但是这样的继承方式，一旦其中一个对象改变，那么改函数所有输出的实例都会发生改变，这就造成了数据污染问题
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

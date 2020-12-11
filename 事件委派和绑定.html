@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+    
+    window.onload = function() {
+
+        var li = document.getElementsByTagName('li');
+
+        for(var i = 0; i < li.length; i++) {
+            li[i].onclick = function(event) {
+                console.log(event.target);
+                console.log(event);
+            }
+        }
+
+        var box = document.getElementById('box');
+        //使用addEventListener可以绑定事件；伸着可以为同一个元素，同时绑定多个响应函数
+        box.addEventListener('click', function() {
+            console.log('我是box');
+        });
+
+    }
+        
+
+    </script>
+    <style>
+
+        #ul {
+            background-color: black;
+            width: 500px;
+            padding: 0px;
+            margin: 0 auto;
+        }
+
+        li {
+            border: 1px solid #fff;
+            height: 100px;
+            width: 500px;
+            color: #fff;
+        }
+
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: darkgreen;
+        }
+
+    </style>
+</head>
+<body>
+    <ul id="ul">
+
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+        <li>d</li>
+
+    </ul>
+
+    <div id="box"></div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+
+        function fun() {
+            console.log('hello');
+            console.log(this.name);
+        }
+
+        fun.apply();
+        fun.call();// 把函数当作对象，apply和call都可以直接执行函数和fun()的效果一样
+
+        // 使用call()和apply（）方法，可以将一个对象指定为第一个参数，此时这个对象将会成为函数执行的this,这样就修改了this的指向
+        var obj = {
+            name: 'jay',
+        };
+
+        fun.apply(obj);
+
+        // 那么call()、apply()有什么区别呢，区别在于传参
+
+        function fun2(a, b) {
+            console.log(this.name);
+            console.log(a);
+            console.log(b);
+        }
+
+        fun2.call(obj, 2, 3);
+        fun2.apply(obj, [2, 3]); //给a、b传参，call直接传，apply是传数组
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

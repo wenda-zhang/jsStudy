@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+    
+        //构造函数的出现，是为了不要每个创建对象都只能用 var obj = new Object(); 也就是都只能用Object创建对象，这个类别太少了
+        //而是可以自己创造够咱函数对象，比如 var dog = new Dog();
+        // 构造函数的创建形式，和普通函数一样，但是首字母必须大写
+
+        //构造函数的执行流程
+        //1.立即创建一个新的对象
+        //2.构造函数中的this指的就是构造函数这个对象，添加独享属性，直接用this.name="123";即可
+        //3.执行函数中的代码
+        //4.将新建的对象作为返回值返回
+
+        //构造函数也叫类，Person函数也叫Person类
+        //per就叫Person类的实例
+        //所有的对象都是Object()的实例
+
+        function Person() {
+            this.name = 'jay';
+            this.age = 18;
+            console.log('jay');
+        }
+
+        function Dog() { // 创建不同的类
+            this.name = '旺财';
+            this.age = 6;
+            console.log('dog')
+        }
+
+        // var per = Person();
+        // console.log(per);//这样相当于普通函数的形式，输出为undefined
+
+        var per = new Person();
+        console.log(per); //这样就是真正构造函数的调用形式，这样就输出为对象 
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

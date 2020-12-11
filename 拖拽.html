@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+
+        //拖拽元素用到的流程方法
+        //鼠标按下时：onmousedown
+        //鼠标移动时：onmousemove
+        //鼠标松开时：onmouseup
+        window.onload = function() {
+            var box = document.getElementById('box');
+
+            box.onmousedown = function(event) {
+                var ol = event.clientX - box.offsetLeft;
+                var ot = event.clientY - box.offsetTop;
+                // console.log('按下');
+                document.onmousemove = function(event) {
+                    // console.log('移动');
+                    let x = event.clientX - ol;
+                    let y = event.clientY - ot;
+                    box.style.left = x + 'px';
+                    box.style.top = y + 'px';
+                }
+            }
+
+            box.onmouseup = function() {
+                // console.log('松开');
+                document.onmousemove = null
+            }
+        }
+
+
+    </script>
+
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color:darkgreen;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+</body>
+</html>

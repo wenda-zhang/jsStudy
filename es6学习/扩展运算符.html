@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+
+        // map和foreach的用法
+
+        let arr = [3,6,8,9];
+        let arrNew = arr.map((item, index) => {
+            return item*item;
+        });
+        console.log(arrNew); // [9, 36, 64, 81]  map返回一个映射的数组
+
+        //foreach不会返回数组，需要这样做
+
+        arr.map((item, index) => {
+            return arr[index] = item*item;
+        });
+        console.log(arr); // [9, 36, 64, 81]
+
+        //filter用法
+        let arr2 = [22, 33, 55];
+        let arrNew2 = arr2.filter((item, index) => {
+            return item % 2 == 0;
+        })
+        console.log(arrNew2); //输出满足需要的数组 [22];
+
+
+
+        JSON.stringify({a: 5, b: 6}); // 对象转化成json字符串
+        JSON.parse('{"a": 11, "b": 22}') //json字符串转化成对象
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

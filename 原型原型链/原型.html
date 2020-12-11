@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script type="text/javascript">
+    
+        //我们创建的没一个函数，都有一个prototype属性
+        //每个prototype都对应着一个对象，这个对象就是我们所谓的原型对象
+        //如果函数作为普通函数调用，prototype没有任何作用
+        //当函数以构造函数调用的时候，它所创建的对象都是有个隐藏属性的
+        //指向该构造函数的原型对象，我们可以通过_proto_来访问该属性
+        //原型就相当于一个公共区域，所有的同一个类的实例，都可以访问到这个原型对象
+        //当我们访问对象一个属性或者方法时，它会先在对象自身中寻找，如果有的话就直接使用，没有的话就去原型对象中寻找，有的话就使用,如果还没有，就去原型对象的原型中去寻找（一直找到Object的原型对象），如果再没有，就返回undefined;这整个找的过程，就叫做原型链；
+        
+        //1.每个函数都有一个prototype,即显式原型； 
+        //2.每个实例对象都有一个__proto__即隐式原型；（1,2共同指向Object对象）
+        //3.对象的隐式原型的值就是其对应构造函数显式原型的值；
+
+        //1.函数的显式原型指向的对象默认是空的Object实例对象（Object除外）；
+        //2.所有的函数都是Function的实例（包含Function）；
+        //3.Object的原型对象是原型链的尽头；
+
+        //原型链：访问一个对象的属性时，先在自己的属性中寻找，如果没有，就沿着__proto__这条隐性链条向上寻找，
+        //        直到到达一个空Object的原型对象中寻找，找到返回，找不到就返回undefined;如图所示。
+
+
+        function Person() {
+            this.name = 'jay';
+            this.age = 18;
+            this.sayHello = function() {
+                console.log('hello');
+            };
+        }
+
+        function Dog() {
+            this.name = 'kitty';
+            this.age = 6;
+            this.sayHello = function() {
+                console.log('hi');
+            }
+        }
+
+        var per = new Person();
+        var dog = new Dog();
+
+        per.__proto__.custom = 'basketball';
+
+        console.log(Person.prototype);
+        console.log(per.__proto__);
+
+        console.log(Person.prototype == per.__proto__); // 两个属性，指的是同一个原型对象
+
+        // Person.prototype.custom = 'heihei';
+
+        console.log(per.custom); //只能调用同一个类的属性
+        console.log(dog.like); 
+
+ 
+        function A() {
+        };
+        A.prototype.n = 1;
+        var b = new A();
+        A.prototype = {
+            n: 2,
+            m: 3
+        };
+        var c = new A();
+        console.log(b.n, b.m, c.n, c.m); // 1, undefined, 2, 3
+
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>

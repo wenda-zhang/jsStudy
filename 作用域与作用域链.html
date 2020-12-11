@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        //作用域，其实就是所定义变量，此变量有效的一块区域
+
+        //分类：
+        //1.函数作用域
+        //2.全局作用域
+        //3.没有块作用域（ES6有的）块作用域就是有大括号的作用域{}
+
+        // 作用：隔离变量，不同作用域下，变量不会有冲突
+
+        var x = 10;
+
+        function fn() {
+            console.log(x);
+        };
+
+        function show(f) {
+            var x = 20;
+            f();
+            // console.log(x);
+        };
+
+        show(fn); //这里输出为10
+
+        // 两个函数，作用域是独立的，当找x的时候，都去外边的全局找
+        
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

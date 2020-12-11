@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+
+        //关于this的指向，
+        //当时函数调用，如fun(1)时候，this指向是全局 name='gigi';
+        //当方法调用，如obj1.sayName(),this指向是调用对象的值，即obj1中的name:'jay',如果调用对象中没有name这个属性，name就报undefined;
+
+        function fun(a) {
+            let name = 'dada';
+            if(a == 1) {
+                console.log(this.name);
+            } else if(a == 2) {
+                console.log(this.name);    
+            }
+        };
+
+        var name = 'gigi';
+
+        var obj1 = {
+            name: 'jay',
+            age: 20,
+            sayName: fun
+        };
+
+        var obj2 = {
+            name: 'jielun',
+            age: 40,
+        };
+
+        // fun(1);
+        obj1.sayName();
+
+        //有一种情况很特殊！！！！！！
+        var object = {
+            name: 'myobject',
+            getFunc: function() {
+                return function() {
+                    return this.name;
+                }
+            }
+        }
+
+        console.log(object.getFunc()()); //!!!!!!这里其实函数返回的是函数，不是方法！！所以this指向全局
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

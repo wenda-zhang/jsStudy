@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="./myModule.js"></script>
+    <script type="text/javascript">
+
+        //什么是闭包？
+        //当一个嵌套的内部子函数，引用了被嵌套的外部父函数里面的变量时，就形成了闭包
+        //1.使用函数内部的变量在函数执行完之后，仍然存活在变量中（延长了局部变量的生命周期）；
+        //2.让函数外部可以操作到函数内部的数据
+
+        // 函数执行完之后，函数内的变量还存在吗？
+        // 一般是不存在了，除非是存在于闭包中的变量，就可能还存在
+
+        //闭包的缺点：
+        //函数执行完之后，函数内部的局部变量没有释放，占用内存时间会变长；
+        //容易造成内存泄漏
+        // 内存溢出：内存溢出就是一种程序运行的错误，当运行所需内存超过了剩余内存时，就抛出内存溢出的错误
+        // 内存泄漏：占用内存没有被及时释放（函数内定义了全局变量；setInterval忘记关闭；闭包中定义了，最后没有释放）
+
+        //闭包的优点：
+        // 外边访问不到闭包内的a,b变量，无法对a,b变量做出修改，这样就很好的保护了a,b变量
+        function fun1() {
+            var a = 2;
+            var b = 'abc';
+            function fun2() {
+                a++
+                console.log(a);
+            }
+            return fun2;
+        }
+
+        var f = fun1();//这一步的时候，闭包才形成
+        f(); // 3
+        f(); // 4
+        //f = null// 这样闭包就死亡了，变成垃圾就回收了
+
+
+        //引入模块中不同的方法
+        var module = myModule();
+
+        module.doSomeThing();
+        module.doOtherThing();
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
