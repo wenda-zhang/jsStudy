@@ -8,7 +8,7 @@
 
         //关于this的指向，
         //当时函数调用，如fun(1)时候，this指向是全局 name='gigi';
-        //当方法调用，如obj1.sayName(),this指向是调用对象的值，即obj1中的name:'jay',如果调用对象中没有name这个属性，name就报undefined;
+        //当对象当作方法来调用，如obj1.sayName(),this指向是调用对象的值，即obj1中的name:'jay',如果调用对象中没有name这个属性，name就报undefined;
 
         function fun(a) {
             let name = 'dada';
@@ -46,6 +46,7 @@
         }
 
         console.log(object.getFunc()()); //!!!!!!这里其实函数返回的是函数，不是方法！！所以this指向全局
+
     </script>
 </head>
 <body>
