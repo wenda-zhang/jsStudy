@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+
+        //什么是浅拷贝？如何实现浅拷贝？什么是深拷贝？如何实现深拷贝？
+
+        //1.我们了解了对象类型在赋值的过程中其实是复制了地址，
+        //  从而会导致改变了一方其他也都被改变的情况。
+        //  通常在开发中我们不希望出现这样的问题，
+        //  我们可以使用浅拷贝来解决这个情况。
+        //比如下面这个例子，就是因为只是复制了地址
+        let a = {
+            age: 1,
+        };
+        let b = a;
+        a.age = 2;
+        console.log(b.age); // 2
+
+        //首先可以通过 Object.assign 来解决这个问题,这个是浅拷贝的方法，也就是说，是通过浅拷贝的方法来解决这个问题的
+        let a2 = {
+            age: 1,
+        }
+        let b2 = Object.assign({}, a2);
+        a2.age = 2;
+        console.log(b2.age); // 1
+
+        //另外我们还可以通过展开运算符 ... 来实现浅拷贝
+        let a3 = {
+            age: 1,
+        };
+        let b3 = { ...a3 }
+        a3.age = 2
+        console.log(b3.age) // 1
+
+        // 通常浅拷贝就能解决大部分问题了，但是当我们遇到如下情况就可能需要使用到深拷贝了,就是说值里面害包含对象，之前的方法只是拷贝了第一层
+        let a4 = {
+            age: 1,
+            jobs: {
+                first: 'FE',
+                },
+        };
+        let b4 = { ...a4 };
+        a4.jobs.first = 'native';
+        console.log(b4.jobs.first); // native
+        
+        //这种问题就要用到深拷贝来解决了，这个问题通常可以通过 JSON.parse(JSON.stringify(object)) 来解决，这就是深拷贝
+        let a5 = {
+                age: 1,
+                jobs: {
+                    first: 'FE'
+                    }
+                }
+        let b5 = JSON.parse(JSON.stringify(a5))
+        a5.jobs.first = 'native'
+        console.log(b5.jobs.first) // FE
+
+
+    </script>
+</body>
+</html>

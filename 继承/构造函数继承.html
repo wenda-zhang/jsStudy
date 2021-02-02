@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>构造函数的继承方式</title>
     <script type="text/javascript">
     
         function a() {
@@ -15,8 +15,12 @@
             this.b = 2;
         };
 
-        console.log(new b);
+        var bb = new b();
+
+        console.log(bb);
+
         //是通过改变 a 构造函数运行时 this 指向，指向 b，但是 a 原型链上的东西没有继承。
+        
     </script>
 </head>
 <body>

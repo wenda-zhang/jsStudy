@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+
+        function Person() {
+            this.name = 'jay';
+            this.age = 18;
+            this.sayHello = function() {
+                console.log('hello pp!');
+            }
+        }
+        function Animal() {
+            this.name = "dog";
+            this.age = 3;
+            this.sayHello = function() {
+                console.log('hello aa');
+            }
+        }
+
+        var per = new Person();
+        per.__proto__.like = 'football';
+        per.like = 'soccer';
+        console.log(per.__proto__.like);
+        
+        // per.__proto__.habbit = 'basketball';
+        // var obj = {};
+        // var oo = new Object();
+        // obj.__proto__.like = 'football';
+
+        // // var obj = {};
+        // console.log(Person.prototype.habbit);
+        // console.log(per.__proto__.like);
+
+        // console.log(oo.like);
+
+    </script>
+</body>
+</html>
