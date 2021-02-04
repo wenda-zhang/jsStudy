@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script type="text/javascript">
+
+        let a = {
+            age: 18,
+        }
+
+        let b = Object.assign({}, a);
+        b.age = 28;
+        console.log(a);
+        let c = {...a};
+        c.age = 38;
+        console.log(a);
+
+        let d = JSON.parse(JSON.stringify(a));
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 1.promise有几种状态：
+        // 有三种： pending, resolve, reject。
+        // 2.状态可以改变吗?
+        // 不能改变。
+        // 3.promise是怎么解决回调地狱的？/为什么要使用promise
+        // 通常情况下如果是一个请求里面得到的参数，下个请求用到这个参数才能请求，然后开启下个请求。。。这样容易进入一个地狱回调循环
+        // 而使用promise就可以解决地狱回调的问题
+        function request1() {
+            return new Promise(resolve => resolve(1));
+        };
+
+        function request2() {
+            return new Promise(resolve => resolve(2));
+        };
+
+        function request3() {
+            return new Promise(resolve => resolve(3));
+        };
+
+        request1()
+            .then(res => {
+                console.log(res);
+                console.log('第一层');
+                return request2();
+            })
+            .then(res2 => {
+                console.log(res2);
+                console.log('第二层');
+                return request3();
+            })
+            .then(res3 => {
+                console.log(res3);
+                console.log('第三层');
+            })
+        // 这样就避免了之前所说的地狱回调的问题
+
+        // 4.promise都有哪些方法？
+        // promise.all([xxx, xxx, xxx]).then; 等数组里的所有promise都执行完，才开始执行then
+        // promise.race([xx,xx,xx]).then;只要数组里面有一个promise执行，那么久立即执行then
+
+        // 5.async和await怎么使用、如何让promise按顺序执行
+        var promise1 = new Promise(resolve => {
+            setTimeout(() => {
+                resolve(1);
+            }, 3000);
+        });
+        var promise2 = new Promise(resolve => {
+            setTimeout(() => {
+                resolve(2);
+            }, 2000);
+        });
+        var promise3 = new Promise(resolve => {
+            setTimeout(() => {
+                resolve(3);
+            }, 1000);
+        })
+
+        // 正常情况下执行三个promise函数得到：3 2 1 
+        // promise1.then( res => {
+        //     console.log(res);
+        // })
+        // promise2.then( res => {
+        //     console.log(res);
+        // })
+        // promise3.then( res => {
+        //     console.log(res);
+        // })
+
+        // 现在让他们能够依次执行 这样得到就是：1 2 3
+        async function execute() {
+            await promise1.then( res => {console.log(res)});
+            await promise2.then( res => {console.log(res)});
+            await promise3.then( res => {console.log(res)});
+        }
+        execute(); //注意 async和await都是成对出现的
+
+        // promise的使用方法：
+        // var num = 123;
+        // var test = new Promise(function (resolve, reject) {
+        //     if (num == 123) {
+        //         resolve('abc');
+        //     } else {
+        //         reject('error')
+        //     }
+        // });
+
+        // test.then(res => {
+        //     console.log(res);
+        // }).catch(err => {
+        //     console.log(err);
+        // });
+
+        // async function test2() {
+        //     return 'zwd';
+        // };
+        // //上面这个async过的函数，就相当于 var test2 = new Promise(function(resolve, reject) {resolve('zwd')})
+        // //也就是说async把一个回调函数，变成了promise的形式，可以使用 .then()方法来调用了
+        // console.log(test2());
+        // test2().then(res => {
+        //     console.log(res + '成功！');
+        // });
+
+    </script>
+</body>
+
+</html>

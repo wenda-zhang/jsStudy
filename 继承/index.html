@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        function Parent(value) {
+            this.val = value
+        }
+        Parent.prototype.getValue = function () {
+            console.log(this.val)
+        }
+
+        function Child(value) {
+            Parent.call(this, value)
+        }
+        Child.prototype = new Parent()
+        const child = new Child(1)
+        child.getValue() // 1
+        child instanceof Parent // true
+
+        // 以上的继承方式叫做组合继承，是最常用的继承方式
+        // 以上继承的方式核心是在子类的构造函数中通过 Parent.call(this) 继承父类的属性，
+        // 然后改变子类的原型为 new Parent() 来继承父类的函数。
+
+
+        // function Parent(value) {
+        //     this.val = value
+        // }
+        // Parent.prototype.getValue = function () {
+        //     console.log(this.val)
+        // }
+
+        // function Child(value) {
+        //     Parent.call(this, value)
+        // }
+        // Child.prototype = Object.create(Parent.prototype, {
+        //     constructor: {
+        //         value: Child,
+        //         enumerable: false,
+        //         writable: true,
+        //         configurable: true
+        //     }
+        // })
+
+        // const child = new Child(1)
+
+        // child.getValue() // 1
+        // child instanceof Parent // true
+
+        // 以上为寄生组合继承，组合继承是使用了父类的构造函数，组合继承缺点在于继承父类函数时调用了构造函数，寄生继承优化掉了这一点
+
+
+        //以上两种继承方式都是使用原型去继承进而实现的，ES6提出的新的class继承方式如下：
+
+        // class Parent {
+        //   constructor(value) {
+        //     this.val = value
+        //   }
+        //   getValue() {
+        //     console.log(this.val)
+        //   }
+        // }
+        // class Child extends Parent {
+        //   constructor(value) {
+        //     super(value)
+        //     this.val = value
+        //   }
+        // }
+        // let child = new Child(1)
+        // child.getValue() // 1
+        // child instanceof Parent // true
+
+        // class 实现继承的核心在于使用 extends 表明继承自哪个父类，
+        // 并且在子类构造函数中必须调用 super，因为这段代码可以看成 Parent.call(this, value)。
+
+    </script>
+</body>
+
+</html>

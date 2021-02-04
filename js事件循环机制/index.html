@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+
+        // /异步代码执行顺序？解释一下什么是 Event Loop ？
+        // Event Loop即事件循环，是指浏览器或Node的一种解决javaScript单线程运行时不会阻塞的一种机制，也就是我们经常使用异步的原理。
+
+        // 大家也知道了当我们执行 JS 代码的时候其实就是往执行栈中放入函数，那么遇到异步代码的时候该怎么办？
+        // 其实当遇到异步的代码时，会被挂起并在需要执行的时候加入到 Task（有多种 Task） 队列中。
+        // 一旦执行栈为空，Event Loop 就会从 Task 队列中拿出需要执行的代码并放入执行栈中执行，
+        // 所以本质上来说 JS 中的异步还是同步行为。
+
+        // 执行栈在执行完同步任务后，查看执行栈是否为空，如果执行栈为空，就会去执行Task（微任务），每次微任务执行完毕后，
+        // 检查微任务(microTask)队列是否为空，如果不为空的话，会按照先入先出的规则全部执行完微任务(microTask)后，
+        // 设置微任务(microTask)队列为null，然后再执行宏任务（在消息队列中），如此循环。
+
+        // 异步代码又分为宏任务和微任务，
+        // 宏任务有：setTimeout、setInterval
+        // 微任务有：Promise
+
+        //执行调用优先级：优先级是调用栈>微任务>消息队列（也就是宏任务）
+
+    </script>
+</body>
+</html>
