@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // setInterval() 方法会不停地调用函数，直到 clearInterval() 被调用或窗口被关闭。
+    var i = 0;
+    var interalMachine = setInterval(() => {
+      console.log('setInteral');
+      // var i = 0;
+      i += 1;
+      console.log(i);
+      if(i == 5) {
+        clearInterval(interalMachine);
+        console.log('定时器已经停止');
+      }
+    }, 1000);
+
+    //而settime则是只执行依次便停止
+    var timeoutMachine = setTimeout(() => {
+      console.log('settimeout');
+    }, 1000);
+  </script>
+</body>
+
+</html>

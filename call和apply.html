@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script type="text/javascript">
-
         function fun() {
             console.log('hello');
             console.log(this.name);
         }
 
         fun.apply();
-        fun.call();// 把函数当作对象，apply和call都可以直接执行函数和fun()的效果一样
+        fun.call(); // 把函数当作对象，apply和call都可以直接执行函数和fun()的效果一样
 
         // 使用call()和apply()方法，可以将一个对象指定为第一个参数，此时这个对象将会成为函数执行的this,这样就修改了this的指向
         var obj = {
@@ -32,9 +32,33 @@
         fun2.call(obj, 2, 3);
         fun2.apply(obj, [2, 3]); //给a、b传参，call直接传，apply是传数组
 
+        //那么call(),apply(),bind()到底有什么区别吗？
+        var xw = {
+            name: "小王",
+            gender: "男",
+            age: 24,
+            say: function () {
+                alert(this.name + " , " + this.gender + " ,今年" + this.age);
+            }
+        }
+        var xh = {
+            name: "小红",
+            gender: "女",
+            age: 18
+        }
+        xw.say();
+
+        xw.say.call(xh);
+        // 对于apply可以这样：
+        xw.say.apply(xh);
+        // 而对于bind来说需要这样：
+        xw.say.bind(xh)();
+        // call和apply都是对函数的直接调用，而bind方法返回的仍然是一个函数，因此后面还需要()来进行调用才可以
     </script>
 </head>
+
 <body>
-    
+
 </body>
+
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
         }
     </style>
 </head>
+
 <body>
     <div id="box">
     </div>
@@ -23,19 +25,31 @@
     </ul>
 
     <script type="text/javascript">
-        
-        var box = document.getElementById('box');        
-        box.addEventListener('click', function(e) {
-            console.log('我是box!!!');
-        });
+        // var box = document.getElementById('box');        
+        // box.addEventListener('click', function(e) {
+        //     console.log('我是box!!!');
+        // });
 
-        var li = document.getElementsByTagName('li');
-        for(var i = 0; i < li.length; i++) {
-            li[i].onclick = function(e) {
-                console.log(e.target.innerText);
-            }
-        }
+        // var li = document.getElementsByTagName('li');
+        // for(var i = 0; i < li.length; i++) {
+        //     li[i].onclick = function(e) {
+        //         console.log(i);
+        //         console.log(e.target.innerText);
+        //     }
+        // }
 
+        var clickBtnLi = document.getElementsByTagName('li');
+
+        for (var i = 0; i < clickBtnLi.length; i++) {
+            (function (j) {
+                clickBtnLi[j].onclick = function (e) {
+                    console.log(j);
+                    console.log(e.target.innerText);
+                }
+            })(i)
+        };
+        // 用立即执行函数，输出j是0，1，2，3，4，5，单独的创建了作用域
     </script>
 </body>
+
 </html>

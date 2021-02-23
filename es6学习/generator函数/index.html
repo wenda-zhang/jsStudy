@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Generator 最大的特点就是可以控制函数的执行
+
+        function* foo(x) {
+            let y = 2 * (yield(x + 1))
+            let z = yield(y / 3)
+            return (x + y + z)
+        }
+        let it = foo(5)
+        console.log(it.next()) // => {value: 6, done: false}
+        console.log(it.next(12)) // => {value: 8, done: false}
+        console.log(it.next(13)) // => {value: 42, done: true}
+
+        // Generator 函数一般见到的不多， 其实也于他有点绕有关系， 并且一般会配合 co 库去使用。 当然， 我们可以通过 Generator 函数解决回调地狱的问题， 可以把之前的回调地狱例子改写为如下代码：
+
+        function* fetch() {
+            yield ajax(url, () => {})
+            yield ajax(url1, () => {})
+            yield ajax(url2, () => {})
+        }
+        let it = fetch()
+        let result1 = it.next()
+        let result2 = it.next()
+        let result3 = it.next()
+    </script>
+</body>
+
+</html>

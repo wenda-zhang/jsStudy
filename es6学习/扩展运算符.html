@@ -13,10 +13,10 @@
             return item*item;
         });
         console.log(arrNew); // [9, 36, 64, 81]  map返回一个映射的数组
-
+        console.log(arr);
         //foreach不会返回数组，需要这样做
 
-        arr.map((item, index) => {
+        arr.forEach((item, index) => {
             return arr[index] = item*item;
         });
         console.log(arr); // [9, 36, 64, 81]
