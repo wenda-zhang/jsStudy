@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 1.什么是fiber机制，是解决什么问题的？
+    // 在之前的版本中，如果你拥有一个很复杂的复合组件，然后改动了最上层组件的 state，那么调用栈可能会很长
+    // 调用栈过长，再加上中间进行了复杂的操作，就可能导致长时间阻塞主线程，带来不好的用户体验。Fiber 就是为了解决该问题而生。
+    // Fiber 本质上是一个虚拟的堆栈帧，新的调度器会按照优先级自由调度这些帧，从而将之前的同步渲染改成了异步渲染，在不影响体验的情况下去分段计算更新。
+
+    // 2.setState是什么，有什么特点？
+    // setState是react里面用来改变数据状态的方法。setState是异步的代码，等到同步代码执行完才会执行
+
+    // 3.react事件机制
+    // 以上类似代码想必大家经常会写到，但是你是否考虑过点击事件是否绑定在了每一个标签上？事实当然不是，JSX 上写的事件并没有绑定在对应的真实 DOM 上，而是通过事件代理的方式，
+    // 将所有的事件都统一绑定在了 document 上。这样的方式不仅减少了内存消耗，还能在组件挂载销毁时统一订阅和移除事件。
+
+    //     4.react周期函数
+    //     组件将要挂载时触发的函数：componentWillMount
+    //     组件挂载完成时触发的函数：componentDidMount
+    //     是否要更新数据时触发的函数：shouldComponentUpdate
+    //     将要更新数据时触发的函数：componentWillUpdate
+    //     数据更新完成时触发的函数：componentDidUpdate
+    //     组件将要销毁时触发的函数：componentWillUnmount
+    //     父组件中改变了props传值时触发的函数：componentWillReceiveProps
+
+    // 5.useEffect的用法？
+    // useEffect就好像上述所说前三个周期的综合用法
+    // 首先没有第二个参数的时候，就不停的在调用里面的函数
+    // 其次有第二个参数但是为空数组的时候，就是只调用一次
+    // 最后第二个参数为变量的时候，仅当这个变量发生变化的时候，会执行里面的函数
+
+    // 6.什么是hooks，产生的背景，使用hooks有什么优点（是react16.8的新特性）
+    // 为什么产生：首先为了解决组件复用，使得逻辑变得很复杂，其次hooks之前写组件都是用class然后extends的方式，然后还需要bind改变this指向方式，使得代码很冗余。
+    // 主要有两个作用：一：用于在函数组件中引入状态管理和生命周期方法useContext.二：取代高阶组件和render props来实现抽象和可重用性
+
+  </script>
+</body>
+
+</html>

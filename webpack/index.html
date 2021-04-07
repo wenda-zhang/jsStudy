@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    // 1.有哪些方式可以减少 Webpack 的打包时间？
+    // 首先，我们可以优化 {Loader} 的文件搜索范围  
+    // loader: 'babel-loader',
+    //     只在 src 文件夹下查找
+    //     include: [resolve('src')],
+    // 其次，受限于 Node 是单线程运行的，所以 Webpack 在打包的过程中也是单线程的，
+    //     特别是在执行 Loader 的时候，长时间编译的任务很多，这样就会导致等待的情况。
+    // {HappyPack} 可以将 Loader 的同步执行转换为并行的，这样就能充分利用系统资源来加快打包效率了。
+
+    // 代码压缩：在 Webpack4 中，我们只需要将 mode 设置为 production 就可以默认开打包压缩代码
+
+    // 2.如何减少webpack打包完成之后的代码体积？
+    // 一个办法是按需加载，就是将每个路由页面单独打包成一个文件。
+    // 第二个办法是Scope Hoisting 会分析出模块之间的依赖关系，尽可能的把打包出来的模块合并到一个函数中去。
+    // 第三个办法是用Tree Shaking，不会把多余的代码打包打入到最终的文件中。
+
+
+
+
+
+  </script>
+</body>
+</html>

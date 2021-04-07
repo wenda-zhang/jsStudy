@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    // 1.vue的生命周期钩子函数
+    // 首先是beforecreate函数执行，此时还获取不到props和data里面的数据，还属于数据的初始化阶段
+    // 然后执行created函数，此时已经可以获取到props和data里面的数据，但是组件还没又加载和渲染
+    // 然后是beforeMount函数执行，此时开始创建虚拟dom结构，
+    // 然后是mounted函数执行，此时将虚拟dom渲染为真实的dom并且开始渲染数据
+
+    // beforeUpdate和updated就是页面更新前和更新后所执行的
+
+    // keep-alive所包裹的组件，在切换时组件不会进行销毁，而是会存入缓存，存入缓存时执行deactivated函数，命中缓存时会执行actived钩子函数
+
+    // v-if和v-show的区别
+
+    // 2.vue的响应式原理
+    // Vue 内部使用了 Object.defineProperty() 来实现数据响应式，通过这个函数可以监听到 set 和 get 的事件。
+
+    // 第一步：组件初始化的时候，先给每一个Data属性都注册getter，setter，也就是reactive化。然后再new 一个自己的Watcher对象，
+    // 此时watcher会立即调用组件的render函数去生成虚拟DOM。在调用render的时候，就会需要用到data的属性值，此时会触发getter函数，
+    // 将当前的Watcher函数注册进sub里。
+
+    // 第二步：当data属性发生改变之后，就会遍历sub里所有的watcher对象，通知它们去重新渲染组件。
+
+    // 3.nextTick的概念
+    // 是解决dom没有渲染完，然后进行dom获取和操作的，比如有时候created或者mounted需要进行dom获取的时候，dom还没渲染完，这时候使用this.$nextTick()
+    // 就会等到dom渲染完，才开始获取或者改变dom
+
+    // 4.vue3.0相比之前有什么变化？
+    // 3.0去掉了filter, 么有beforeCreate created,用setup取代（setUp还获取不到data和props里面的变量，但是可以用ref直接定义变量）
+    // setup里没有this，直接使用
+    // 用proxy（es6语法）取代object.defineProperty来实现数据的响应式（采用ES6的Proxy对象来实现，Proxy可以直接监听对象和数组的变化。）
+
+    // 5.为什么不建议v-for和v-if一起使用？
+    // 因为v-for比v-if有更高的优先级，所以就算是循环中只使用一个数据，也会遍历整个数组，然后才做v-if的判断
+
+    
+
+  </script>
+</body>
+</html>

@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script type="text/javascript">
-
         //关于this的指向，
         //当时函数调用，如fun(1)时候，this指向是全局 name='gigi';
         //当对象当作方法来调用，如obj1.sayName(),this指向是调用对象的值，即obj1中的name:'jay',如果调用对象中没有name这个属性，name就报undefined;
 
         function fun(a) {
             let name = 'dada';
-            if(a == 1) {
+            if (a == 1) {
                 console.log(this.name);
-            } else if(a == 2) {
-                console.log(this.name);    
+            } else if (a == 2) {
+                console.log(this.name);
             }
         };
 
@@ -38,8 +38,8 @@
         //有一种情况很特殊！！！！！！
         var object = {
             name: 'myobject',
-            getFunc: function() {
-                return function() {
+            getFunc: function () {
+                return function () {
                     return this.name;
                 }
             }
@@ -47,9 +47,42 @@
 
         console.log(object.getFunc()()); //!!!!!!这里其实函数返回的是函数，不是方法！！所以this指向全局
 
+        // this的四大规则
+        
+        // 1.默认绑定
+        // 当独立函数调用时，不管是否在调用栈中，this都指向全局对象
+
+        // 2.隐式绑定
+        // 当函数引用有上下文对象时，隐式绑定规则会把函数调用中的this绑定到这个上下文对象。
+        // 对象属性引用链中只有最后一层在调用位置中起作用。
+        // function foo() {
+        //     console.log(this.a);
+        // }
+        // var obj2 = {
+        //     a: 42,
+        //     foo: foo
+        // };
+        // var obj1 = {
+        //     a: 2,
+        //     obj2: obj2
+        // };
+        // obj1.obj2.foo(); // 42
+
+        // 3. 显式绑定     
+        // 采用call()和apply()，通过传入一个对象（若为基本类型，会被封装函数转为对象—装箱），将this绑定到该对象
+
+        // 4. new绑定
+        // 任何函数都可能被用作构造函数，当函数被new操作符“构造调用”时
+        // function foo(a) {
+        //     this.a = a;
+        // }
+        // var bar = new foo(2);
+        // console.log(bar.a); // 2
     </script>
 </head>
+
 <body>
-    
+
 </body>
+
 </html>

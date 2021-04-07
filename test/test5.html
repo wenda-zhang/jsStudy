@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div style="height: 9999px;"></div>
+  <script>
+
+    function debounce(fn, time) {
+      let timer = null;
+      // console.log(timer);
+      console.log('haha');
+      return function () {
+        // console.log('huidiao!');
+        if (timer) {
+          clearTimeout(timer);
+        }
+        timer = setTimeout(fn, time);
+      }
+    };
+
+    function fn() {
+      var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+      console.log('我的位置：' + scrollTop);
+    };
+
+    window.onscroll = debounce(fn, 1000);
+    
+  </script>
+
+</body>
+
+</html>
